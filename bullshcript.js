@@ -5,7 +5,7 @@ Tech House Mix PLzgofGqYK8u47wzvoIz1MWBdOe6ow4R12
 CannaTest PLzgofGqYK8u6AlSuAxhkaYzgkWBvDupWR
 */
 
-let youtubePlaylist = `PLZWiw-xxQ4SPDmADhvme7-pU2bx3s7nKX`;
+let youtubePlaylist = `PL0Sch7TE5zE_l5wTqhIpVrbBQnjnmv-8B`;
 let otherwebsiteurl = "https://firer.at/pages/games.html";
 var websiteurl = "https://firer.at/pages/games.html";
 
@@ -14,7 +14,7 @@ async function somerandomStartActions() {
         // create landing platform
         // landingPlatform();
         // Set scene settings
-        BanterStuff();
+        // BanterStuff();
         /* ENABLE FIRE TABLET */
         enableThePortableFireScreen();
 	}, 1000);
@@ -119,19 +119,19 @@ async function enableYouTube() {
 			console.log("YouTube Player Loading");
 
 			const youtubeAttributes = {
-				"scale": "1 1 1",
+				"scale": "10.5 10.5 10.5",
 				"mip-maps": "0",
-				"rotation": "0 180 0",
-				"position": "0 1.5 5",
-				"hand-controls": "false",
-				"button-position": "0 0.5 5",
-				"volume": "0",
+				"rotation": "0 0 0",
+				"position": "1.34 5.3 -8",
+				"hand-controls": "true",
+				// "button-position": "0 0.5 5",
+				"volume": "3",
 				// "button-rotation": "0 0 0",
 				// "button-scale": "1 1 1",
-				"spatial": "false",
-				// "spatial-min-distance": "1",
-				// "spatial-max-distance": "1000",
-				"playlist": "PLZWiw-xxQ4SPDmADhvme7-pU2bx3s7nKX",
+				// "spatial": "false",
+				"spatial-min-distance": "15",
+				"spatial-max-distance": "80",
+				"playlist": youtubePlaylist,
 				// "data-playlist-icon-url": "https://vanquish3r.github.io/cannabanter/images/Playlist.png",
 				// "data-vol-up-icon-url": "https://vanquish3r.github.io/cannabanter/images/Vol_Up.png",
 				// "data-vol-down-icon-url": "https://vanquish3r.github.io/cannabanter/images/Vol_Dn.png",
@@ -139,7 +139,7 @@ async function enableYouTube() {
 				// "data-skip-forward-icon-url": "https://vanquish3r.github.io/cannabanter/images/Sync_FW.png",
 				// "data-skip-backward-icon-url": "https://vanquish3r.github.io/cannabanter/images/Sync_Bk.png",
 				"announce": "false",
-				"instance": "testvidyainstance",
+				// "instance": "campfire1",
 				"announce-events": "false",
 				"announce-four-twenty": "false"
 			};
@@ -164,12 +164,12 @@ function enableTheFireScreen() {
 			screenstuffDisabled = false;
 			console.log("Adding Screen Cast");
 			const firescreenAttributes = {
-				"scale": "1 1 1",
+				"scale": "10.5 10.5 10.5",
 				"mipmaps": "0",
-				"rotation": "0 180 0",
-				"screen-rotation": "0 180 0",
+				"rotation": "0 0 0",
+				"screen-rotation": "0 0 0",
 				"screen-scale": "1 1 1",
-				"position": "0 1 -1",
+				"position": "1.34 5.3 -8",
 				"lock-position": "true",
 				"hand-controls": "false",
 				"pixelsperunit": "1600",
@@ -182,24 +182,14 @@ function enableTheFireScreen() {
 				"volume": "0.2",
 				"width": "1920",
 				"height": "1080",
-				"screen-position": "0 -3.1 -21",
+				// "screen-position": "0 -3.1 -21",
 				"website": websiteurl
 			};
 			const firescreen = document.createElement("script");
-			firescreen.id = "cannabanter-firescreen";
+			firescreen.id = "campfire-firescreen";
 			firescreen.setAttribute("src", "https://51.firer.at/scripts/firescreenv2.js");
 			Object.entries(firescreenAttributes).forEach(([key, value]) => { firescreen.setAttribute(key, value); });
 			document.querySelector("a-scene").appendChild(firescreen);
-			if (websiteurl.includes("hyperbeam.com/i/")) {
-				setTimeout(async () => { 
-					// let theBrowserthingy = await BS.BanterScene.GetInstance().Find(`MyBrowser2`);
-					// let thebrowserpart = theBrowserthingy.GetComponent(BS.ComponentType.BanterBrowser);
-					// thebrowserpart.RunActions(JSON.stringify({"actions": [{ "actionType": "runscript","strparam1": "const checkbox = document.querySelector(`.p-checkbox-box[role='checkbox']`); const joinButton = document.querySelector('.footer_3Yiou .joinBtn_1TAU6'); if (checkbox) checkbox.click(); if (joinButton) { const observer = new MutationObserver(() => { if (!joinButton.classList.contains('p-disabled')) { joinButton.click(); observer.disconnect(); setTimeout(() => { const skipButton = document.querySelector('.dialog-secondary-btn'); if (skipButton) skipButton.click(); }, 3000); } }); observer.observe(joinButton, { attributes: true, attributeFilter: ['class'] }); }" }]}));
-					// setTimeout(async () => {
-					// 	thebrowserpart.RunActions(JSON.stringify({"actions": [{ "actionType": "runscript","strparam1": "var fullscreenButton = document.querySelector(`.p-button.p-component.tu-button.btn-tertiary.btn_2YRyp svg path[d^='M3 3h6.429']`); if (fullscreenButton) { fullscreenButton.closest('button').click(); } setTimeout(async () => { var chatButton = document.querySelector(`.p-button.p-component.tu-button.btn-tertiary.fsChatBtn_2cCyy svg path[d^='M22 22h-2V2h2v20zM2 11h12.17']`); if (chatButton) { chatButton.closest('button').click(); } }, 3500);" }]}));
-					// }, 5000);
-				}, 500);
-			}
 		}
 	}, 3000); 
 	console.log("Screen Stuff enabled: " + screenstuffDisabled);
@@ -216,21 +206,21 @@ async function enableKaraokePlayer() {
 		setTimeout(() => {  
 			console.log("karaoke player enabling");
 			const karaokeAttributes = {
-				"scale": "1 1 1",
+				"scale": "10.5 10.5 10.5",
 				"mip-maps": "0",
 				"rotation": "0 0 0",
-				"position": "0 1 1",
+				"position": "1.34 5.3 -8",
 				"hand-controls": "true",
 				// "button-position": "0 1 0",
 				"volume": "15",
 				"button-rotation": "0 90 0",
-				"button-scale": "1 1 1",
-				"singer-button-position": "0 -5 0",
-				"singer-button-rotation": "0 0 0",
+				// "button-scale": "1 1 1",
+				// "singer-button-position": "0 -5 0",
+				// "singer-button-rotation": "0 0 0",
 				// "singer-button-scale": "1.5 1.5 1.5",
-				"spatial": "false",
-				// "spatial-min-distance": "1",
-				// "spatial-max-distance": "1000",
+				// "spatial": "false",
+				"spatial-min-distance": "15",
+				"spatial-max-distance": "80",
 				// "data-playlist-icon-url": "https://vanquish3r.github.io/cannabanter/images/Playlist.png",
 				// "data-vol-up-icon-url": "https://vanquish3r.github.io/cannabanter/images/Vol_Up.png",
 				// "data-vol-down-icon-url": "https://vanquish3r.github.io/cannabanter/images/Vol_Dn.png",
