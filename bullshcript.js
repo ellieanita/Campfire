@@ -164,7 +164,7 @@ function enableTheFireScreen() {
 			screenstuffDisabled = false;
 			console.log("Adding Screen Cast");
 			const firescreenAttributes = {
-				"scale": "10.5 10.5 10.5",
+				"scale": "8 8 8",
 				"mipmaps": "0",
 				"rotation": "0 0 0",
 				"screen-rotation": "0 0 0",
