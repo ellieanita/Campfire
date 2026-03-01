@@ -19,8 +19,62 @@ async function somerandomStartActions() {
         enableThePortableFireScreen();
         /* Create The Buttons */
         createButtons();
+        /* Check Initial Player */
+        checkAndEnableInitialPlayer();
 	}, 1000);
 };
+
+let currentActivePlayer = null;
+
+function requestPlayerChange(playerName) {
+    const scene = BS.BanterScene.GetInstance();
+    scene.OneShot(JSON.stringify({ bullshcript_activePlayer: playerName }), true);
+    scene.SetProtectedSpaceProps({ "bullshcript_activePlayer": playerName });
+}
+
+function switchPlayer(playerName) {
+    if (currentActivePlayer === playerName) return;
+    currentActivePlayer = playerName;
+    
+    if (playerName === 'youtube') enableYouTube();
+    else if (playerName === 'karaoke') enableKaraokePlayer();
+    else if (playerName === 'firescreen') enableTheFireScreen();
+}
+
+async function checkAndEnableInitialPlayer() {
+    const scene = BS.BanterScene.GetInstance();
+    while (!scene.localUser || scene.localUser.uid === undefined) {
+        await new Promise(resolve => setTimeout(resolve, 200));
+    }
+    let desiredPlayer = null;
+    if (scene.spaceState && scene.spaceState.protected && scene.spaceState.protected["bullshcript_activePlayer"]) {
+        desiredPlayer = scene.spaceState.protected["bullshcript_activePlayer"];
+    }
+    if (desiredPlayer) {
+        switchPlayer(desiredPlayer);
+    }
+
+    // Listen to one-shots for active player changes
+    scene.On("one-shot", (e) => {
+        if (!e.detail.fromAdmin) return;
+        try {
+            const data = JSON.parse(e.detail.data);
+            if (data.bullshcript_activePlayer) {
+                switchPlayer(data.bullshcript_activePlayer);
+            }
+        } catch(err) {}
+    });
+
+    // Also listen to space state changes just in case a late joiner misses the one-shot
+    scene.On("space-state-changed", (e) => {
+        if (e.detail && e.detail.changes) {
+            const change = e.detail.changes.find(c => c.property === "bullshcript_activePlayer");
+            if (change && change.newValue) {
+                switchPlayer(change.newValue);
+            }
+        }
+    });
+}
 
 async function landingPlatform() {
   const platformObject = await new BS.GameObject("landingPlane").Async();
@@ -251,7 +305,7 @@ function enableThePortableFireScreen(announce = true) {
 			"scale": "0.8 0.8 1",
 			"mipmaps": "0",
 			"rotation": "0 0 0",
-			"position": "-4 1 -6",
+			"position": "-1 1 -1",
 			"pixelsperunit": "1300",
 			"width": "1280",
 			"height": "720",
@@ -304,36 +358,36 @@ function enableThePortableFireScreen(announce = true) {
   }
     async function createButtons() {
         createButton(
-        'Button1', // Name
-        new BS.Vector3(10.5,0.2,5), // Position
-        'https://firer.at/files/FireRat-(4).jpeg', // ButtonImage
-        new BS.Vector3(0,90,0), // Rotation
-        new BS.Vector3(0.5, 0.5, 0.5), // Scale
-        1, 1, 0.2, // width, height, depth
-        () => { console.log("Button 1 Clicked!"); enableYouTube(); },
-        "Youtube" // Button Text
+        'Button1',
+        new BS.Vector3(6,1.1,-6),
+        'https://firer.at/files/FireRat-(4).jpeg',
+        new BS.Vector3(0,90,0),
+        new BS.Vector3(1, 1, 1),
+        1, 1, 0.2,
+        () => { console.log("Button 1 Clicked!"); requestPlayerChange('youtube'); },
+        "Youtube"
         );
 
         createButton(
-        'Button2', // Name
-        new BS.Vector3(10.5,0.2,4.5), // Position
-        'https://firer.at/files/FireRat-(8).jpeg', // ButtonImage
-        new BS.Vector3(0,90,0), // Rotation
-        new BS.Vector3(0.5, 0.5, 0.5), // Scale
-        1, 1, 0.2, // width, height, depth
-        () => { console.log("Button 2 Clicked!"); enableKaraokePlayer(); },
-        "Karaoke" // Button Text
+        'Button2',
+        new BS.Vector3(6,1.1,-5),
+        'https://firer.at/files/FireRat-(8).jpeg',
+        new BS.Vector3(0,90,0),
+        new BS.Vector3(1, 1, 1),
+        1, 1, 0.2,
+        () => { console.log("Button 2 Clicked!"); requestPlayerChange('karaoke'); },
+        "Karaoke"
         );
 
         createButton(
-        'Button3', // Name
-        new BS.Vector3(10.5,0.2,4), // Position
-        'https://firer.at/files/FireRat-(33).jpeg', // ButtonImage
-        new BS.Vector3(0,90,0), // Rotation
-        new BS.Vector3(0.5, 0.5, 0.5), // Scale
-        1, 1, 0.2, // width, height, depth
-        () => { console.log("Button 3 Clicked!"); enableTheFireScreen(); },
-        "FireScreen" // Button Text
+        'Button3',
+        new BS.Vector3(6,1.1,-4),
+        'https://firer.at/files/FireRat-(33).jpeg',
+        new BS.Vector3(0,90,0),
+        new BS.Vector3(1, 1, 1),
+        1, 1, 0.2,
+        () => { console.log("Button 3 Clicked!"); requestPlayerChange('firescreen'); },
+        "FireScreen"
         );
     };
     
