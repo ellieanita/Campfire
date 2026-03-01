@@ -305,7 +305,7 @@ function enableThePortableFireScreen(announce = true) {
 			"scale": "0.8 0.8 1",
 			"mipmaps": "0",
 			"rotation": "0 0 0",
-			"position": "-1 1 -1",
+			"position": "-4 1 -6",
 			"pixelsperunit": "1300",
 			"width": "1280",
 			"height": "720",
@@ -358,36 +358,36 @@ function enableThePortableFireScreen(announce = true) {
   }
     async function createButtons() {
         createButton(
-        'Button1',
-        new BS.Vector3(6,1.1,-6),
-        'https://firer.at/files/FireRat-(4).jpeg',
-        new BS.Vector3(0,90,0),
-        new BS.Vector3(1, 1, 1),
-        1, 1, 0.2,
+        'Button1', // Name
+        new BS.Vector3(10.5,0.2,5), // Position
+        'https://firer.at/files/FireRat-(4).jpeg', // ButtonImage
+        new BS.Vector3(0,90,0), // Rotation
+        new BS.Vector3(0.5, 0.5, 0.5), // Scale
+        1, 1, 0.2, // width, height, depth
         () => { console.log("Button 1 Clicked!"); requestPlayerChange('youtube'); },
-        "Youtube"
+        "Youtube" // Button Text
         );
 
         createButton(
-        'Button2',
-        new BS.Vector3(6,1.1,-5),
-        'https://firer.at/files/FireRat-(8).jpeg',
-        new BS.Vector3(0,90,0),
-        new BS.Vector3(1, 1, 1),
-        1, 1, 0.2,
+        'Button2', // Name
+        new BS.Vector3(10.5,0.2,4.5), // Position
+        'https://firer.at/files/FireRat-(8).jpeg', // ButtonImage
+        new BS.Vector3(0,90,0), // Rotation
+        new BS.Vector3(0.5, 0.5, 0.5), // Scale
+        1, 1, 0.2, // width, height, depth
         () => { console.log("Button 2 Clicked!"); requestPlayerChange('karaoke'); },
-        "Karaoke"
+        "Karaoke" // Button Text
         );
 
         createButton(
-        'Button3',
-        new BS.Vector3(6,1.1,-4),
-        'https://firer.at/files/FireRat-(33).jpeg',
-        new BS.Vector3(0,90,0),
-        new BS.Vector3(1, 1, 1),
-        1, 1, 0.2,
+        'Button3', // Name
+        new BS.Vector3(10.5,0.2,4), // Position
+        'https://firer.at/files/FireRat-(33).jpeg', // ButtonImage
+        new BS.Vector3(0,90,0), // Rotation
+        new BS.Vector3(0.5, 0.5, 0.5), // Scale
+        1, 1, 0.2, // width, height, depth
         () => { console.log("Button 3 Clicked!"); requestPlayerChange('firescreen'); },
-        "FireScreen"
+        "FireScreen" // Button Text
         );
     };
     
