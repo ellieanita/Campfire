@@ -169,7 +169,7 @@ function enableTheFireScreen() {
 				"rotation": "0 0 0",
 				"screen-rotation": "0 0 0",
 				"screen-scale": "1 1 1",
-				"position": "1.34 5.3 -8",
+				"position": "1.34 5.3 8",
 				"lock-position": "true",
 				"hand-controls": "false",
 				"pixelsperunit": "1600",
