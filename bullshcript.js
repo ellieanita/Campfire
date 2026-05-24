@@ -305,7 +305,7 @@ function enableThePortableFireScreen(announce = true) {
 			"scale": "0.8 0.8 1",
 			"mipmaps": "0",
 			"rotation": "0 0 0",
-			"position": "-4 1 -6",
+			"position": "9.5 1 0",
 			"pixelsperunit": "1300",
 			"width": "1280",
 			"height": "720",
